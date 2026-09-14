@@ -5,8 +5,8 @@
 }
 a:hover,
 .yue a:hover,
-.site-head a:hover,
-.sidebar a:hover {
+.t-head a:hover,
+.t-sidebar a:hover {
   color: {{ theme_color }};
   border-color: {{ theme_color }};
 }
@@ -19,7 +19,8 @@ a:hover,
   background-color: {{ theme_color }};
 }
 
-.sponsor_text a {
+.sponsor > .text > a:hover {
+  color: {{ theme_color }};
   border-color: {{ theme_color }};
 }
 

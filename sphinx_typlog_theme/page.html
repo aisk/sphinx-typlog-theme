@@ -1,39 +1,19 @@
 {% extends "layout.html" %}
 
-{%- macro strip_meta(html, name) %}
-{%- set text = html|
-  replace('name="' + name + '"', '')|
-  replace('content=', '')|
-  replace('<meta', '')|
-  replace('/>', '')|
-  replace('"', '')|trim
--%}
-{{ text }}
-{%- endmacro %}
-
-{%- macro og_meta() %}
-{%- for html in metatags.split('\n') %}
-  {%- if 'name="description"' in html %}
-    {%- set text = strip_meta(html, 'description')|trim %}
-    <meta property="og:description" content="{{ text }}">
-  {%- elif 'name="image"' in html %}
-    {%- set src = strip_meta(html, 'image')|trim %}
-    <meta property="og:image" content="{{ src }}">
-  {%- endif %}
-{%- endfor %}
-{%- endmacro %}
+{#- typlog_meta is filled by the html-page-context handler in setup() #}
+{%- set page_meta = typlog_meta if typlog_meta is defined else {} %}
+{%- set og_description = page_meta.get('description') or theme_description %}
+{%- set og_image = page_meta.get('image') or theme_og_image %}
 
 {% block extrahead %}
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{{ project }}">
+  <meta property="og:site_name" content="{{ project|e }}">
   <meta property="og:title" content="{{ title|striptags|e }}">
-  {%- if theme_description and 'name="description"' not in metatags %}
-    <meta property="og:description" content="{{ theme_description }}">
-  {%- else %}
-    {{- og_meta() }}
+  {%- if og_description %}
+  <meta property="og:description" content="{{ og_description|e }}">
   {%- endif %}
-  {%- if theme_og_image and 'name="image"' not in metatags %}
-    <meta property="og:image" content="{{ theme_og_image }}">
+  {%- if og_image %}
+  <meta property="og:image" content="{{ og_image|e }}">
   {%- endif %}
   <meta name="twitter:card" content="summary">
   {%- if theme_twitter %}

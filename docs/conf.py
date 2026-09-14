@@ -7,7 +7,7 @@ from sphinx_typlog_theme import (
     add_github_roles,
 )
 
-extensions = ['sphinx.ext.autodoc']
+extensions = ['sphinx.ext.autodoc', 'sphinx_typlog_theme']
 
 templates_path = ['_templates']
 source_suffix = {'.rst': 'restructuredtext'}
@@ -62,7 +62,6 @@ html_theme_options = {
     'meta_html': '<meta name="generator" content="sphinx">',
     'warning': 'This is a global <a href="#">warnning</a> message',
 }
-html_theme_path = [".."]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

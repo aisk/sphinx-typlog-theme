@@ -1,9 +1,12 @@
-{%- if theme_logo or theme_logo_name %}
+{%- set logo_src = pathto('_static/' ~ theme_logo, 1) if theme_logo else logo_url %}
+{%- set hide_name = theme_logo_name|lower in ('false', 'no', 'off', '0') %}
+{%- if logo_src or theme_logo_name %}
 <a class="logo" href="{{ pathto(root_doc) }}">
-  {%- if theme_logo -%}
-    <img src="{{ pathto('_static/' ~ theme_logo, 1) }}" alt="Logo"/>
+  {%- if logo_src -%}
+    <img src="{{ logo_src|e }}" alt="Logo"/>
   {%- endif -%}
-  {%- if theme_logo_name %}
+  {%- if hide_name %}
+  {%- elif theme_logo_name %}
     {{ theme_logo_name }}
   {%- else %}
     {{ project }}

@@ -18,11 +18,12 @@
   {%- if favicon_url -%}
     <link rel="icon" href="{{ favicon_url|e }}"/>
   {%- endif %}
-  {%- if theme_canonical_url -%}
-    <link rel="canonical" href="{{ theme_canonical_url }}{{ pagename }}.html"/>
-  {%- elif pageurl -%}
+  {%- if pageurl -%}
     <link rel="canonical" href="{{ pageurl|e }}"/>
-  {%- endif -%}
+  {%- elif theme_canonical_url -%}
+    {#- deprecated, use html_baseurl instead #}
+    <link rel="canonical" href="{{ theme_canonical_url|e }}{{ pagename }}{{ file_suffix }}"/>
+  {%- endif %}
 
   {%- if not embedded and use_opensearch -%}
     <link rel="search" type="application/opensearchdescription+xml" title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}" href="{{ pathto('_static/opensearch.xml', 1) }}"/>
@@ -80,9 +81,10 @@
 <body role="document" data-page="{{ pagename }}">
   <header class="t-head">
     <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    {%- set head_logo = pathto('_static/' ~ theme_logo, 1) if theme_logo else logo_url %}
     <a class="t-head_logo" href="{{ pathto(root_doc) }}">
-      {%- if theme_logo -%}
-      <img src="{{ pathto('_static/' ~ theme_logo, 1) }}" alt="Logo"/>
+      {%- if head_logo -%}
+      <img src="{{ head_logo|e }}" alt="Logo"/>
       {%- endif -%}
       {{ project }}
     </a>

@@ -14,6 +14,10 @@ Version 0.8.0
   new docutils and Sphinx.
 - Use Google Analytics 4 (``gtag.js``) for ``analytics_id``.
 - Provide default sidebars, ``html_sidebars`` is optional now.
+- Fix ``logo_name: 'false'`` rendering the text "false".
+- Fix theme ``color`` not applied to sidebar and sponsor links.
+- Support ``html_logo`` and ``html_baseurl``, deprecate ``canonical_url``.
+- Render Open Graph tags from ``.. meta::`` values instead of parsing HTML.
 
 Version 0.7.3
 -------------

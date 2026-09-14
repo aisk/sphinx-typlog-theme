@@ -11,6 +11,10 @@ def get_path():
         import sphinx_typlog_theme
         html_theme_path = [sphinx_typlog_theme.get_path()]
 
+    Note that loading the theme this way skips :func:`setup`, prefer
+    ``extensions = ['sphinx_typlog_theme']`` when the theme can not be
+    found via the entry point.
+
     :return: theme path
     """
     # Theme directory is defined as our parent directory
@@ -80,17 +84,36 @@ def add_github_roles(app, repo):
             elif t.lower() in ['commit', 'commits']:
                 url = base_url + '/commit/{}'.format(n)
 
-        options = options or {'classes': ['gh']}
+        options = dict(options or {})
         set_classes(options)
+        options.setdefault('classes', [])
+        if 'gh' not in options['classes']:
+            options['classes'].append('gh')
         node = reference(rawtext, text, refuri=url, **options)
         return [node], []
 
     app.add_role('gh', github_role)
 
 
+def collect_page_meta(app, pagename, templatename, context, doctree):
+    """Expose ``.. meta::`` values of the current page to templates as
+    ``typlog_meta``, so that ``page.html`` can render Open Graph tags
+    without parsing the rendered ``metatags`` HTML.
+    """
+    meta = {}
+    if doctree is not None:
+        findall = getattr(doctree, 'findall', None) or doctree.traverse
+        for node in findall(lambda n: n.tagname == 'meta'):
+            name = node.get('name')
+            if name and 'content' in node:
+                meta.setdefault(name, node['content'])
+    context['typlog_meta'] = meta
+
+
 def setup(app):
     theme_path = os.path.abspath(os.path.dirname(__file__))
     app.add_html_theme('sphinx_typlog_theme', theme_path)
+    app.connect('html-page-context', collect_page_meta)
 
     return {
         'version': __version__,
