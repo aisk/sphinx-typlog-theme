@@ -35,7 +35,8 @@
   text-transform: uppercase;
 }
 
-.admonition > .last {
+.admonition > .last,
+.admonition > :last-child {
   margin-bottom: 0;
 }
 

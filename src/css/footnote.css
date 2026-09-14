@@ -1,4 +1,9 @@
-.yue table.footnote {
+.yue table.footnote,
+.yue dl.footnote,
+.yue aside.footnote-list {
+  display: none;
+}
+a.footnote-reference .fn-bracket {
   display: none;
 }
 a.footnote-reference {
@@ -38,6 +43,9 @@ a.footnote-reference {
 #typlog-footnote-content,
 #typlog-footnote-content a[href^="#fnref"] {
   display: none;
+}
+#typlog-footnote-content > p:last-child {
+  margin-bottom: 0;
 }
 
 #typlog-footnote-content._active {

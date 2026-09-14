@@ -66,11 +66,13 @@ a.toc-backref {
 
 
 /* -- API references begin -- */
-code.descclassname {
+code.descclassname,
+.sig-prename.descclassname {
   padding: 0;
   background-color: transparent;
 }
-code.descname {
+code.descname,
+.sig-name.descname {
   font-weight: 700;
   padding: 0;
   background-color: transparent;
@@ -94,11 +96,25 @@ dd > table.field-list .field-body {
   padding: 0 0 0 1em;
 }
 
+/* Sphinx >= 2 renders field lists as dl.field-list */
+dd > dl.field-list > dt {
+  font-size: 0.86em;
+  color: var(--color-code);
+  text-transform: uppercase;
+}
+dd > dl.field-list > dd {
+  margin: 0 0 6px 1em;
+}
+dd > dl.field-list > dd > p:last-child {
+  margin-bottom: 0;
+}
+
 dl.class dt,
 dl.method dt,
 dl.data dt,
 dl.exception dt,
-dl.function dt {
+dl.function dt,
+dt.sig-object {
   padding: 5px;
   color: rgba(0, 0, 0, 0.4);
   border-top: 2px solid var(--color-autodoc-border);
@@ -109,7 +125,8 @@ dl.class dt code,
 dl.method dt code,
 dl.data dt code,
 dl.exception dt code,
-dl.function dt code {
+dl.function dt code,
+dt.sig-object code {
   color: var(--color-code);
 }
 
@@ -117,7 +134,8 @@ dl.class dt > em,
 dl.method dt > em,
 dl.data dt > em,
 dl.exception dt > em,
-dl.function dt > em {
+dl.function dt > em,
+dt.sig-object > em {
   font-size: 0.98em;
   color: rgba(0, 0, 0, 0.68);
 }

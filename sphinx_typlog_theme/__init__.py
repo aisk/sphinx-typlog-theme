@@ -4,8 +4,9 @@ __version__ = '0.8.0'
 
 
 def get_path():
-    """Shortcut for users to access this theme. If you are using
-    Sphinx < 1.7, you can add it into html_theme_path::
+    """Shortcut for users to access this theme. The theme is registered
+    automatically via the ``sphinx.html_themes`` entry point, but you can
+    still add it into ``html_theme_path`` manually::
 
         import sphinx_typlog_theme
         html_theme_path = [sphinx_typlog_theme.get_path()]
@@ -69,6 +70,7 @@ def add_github_roles(app, repo):
 
     def github_role(name, rawtext, text, lineno, inliner,
                     options=None, content=None):
+        url = base_url + '/' + text
         if '#' in text:
             t, n = text.split('#', 1)
             if t.lower() in ['issue', 'issues']:
@@ -77,8 +79,6 @@ def add_github_roles(app, repo):
                 url = base_url + '/pull/{}'.format(n)
             elif t.lower() in ['commit', 'commits']:
                 url = base_url + '/commit/{}'.format(n)
-        else:
-            url = base_url + '/' + text
 
         options = options or {'classes': ['gh']}
         set_classes(options)
@@ -89,9 +89,11 @@ def add_github_roles(app, repo):
 
 
 def setup(app):
-    # add_html_theme is new in Sphinx 1.6+
-    if hasattr(app, 'add_html_theme'):
-        theme_path = os.path.abspath(os.path.dirname(__file__))
-        app.add_html_theme('sphinx_typlog_theme', theme_path)
+    theme_path = os.path.abspath(os.path.dirname(__file__))
+    app.add_html_theme('sphinx_typlog_theme', theme_path)
 
-    return {'version': __version__, 'parallel_read_safe': True}
+    return {
+        'version': __version__,
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+    }

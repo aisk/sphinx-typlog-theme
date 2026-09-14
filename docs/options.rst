@@ -68,8 +68,26 @@ Remember to include the ``github.html`` template::
 analytics_id
 ------------
 
-Track your site with Google Analytics::
+Track your site with Google Analytics (GA4 measurement ID)::
 
     html_theme_options = {
-        'analytics_id': 'UA-xxx'
+        'analytics_id': 'G-xxxxxxxx'
+    }
+
+sidebars
+--------
+
+The theme provides these sidebar templates: ``logo.html``, ``github.html``,
+``globaltoc.html``, ``sponsors.html``, ``searchbox.html`` and
+``relations.html``. By default ``logo.html``, ``github.html``,
+``globaltoc.html`` and ``searchbox.html`` are rendered. Customize them
+with ``html_sidebars``::
+
+    html_sidebars = {
+        '**': [
+            'logo.html',
+            'github.html',
+            'globaltoc.html',
+            'searchbox.html',
+        ]
     }

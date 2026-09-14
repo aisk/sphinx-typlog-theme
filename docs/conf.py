@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
@@ -12,14 +10,14 @@ from sphinx_typlog_theme import (
 extensions = ['sphinx.ext.autodoc']
 
 templates_path = ['_templates']
-source_suffix = '.rst'
+source_suffix = {'.rst': 'restructuredtext'}
 
-master_doc = 'index'
+root_doc = 'index'
 
 # General information about the project.
-project = u'Typlog Theme'
-copyright = u'2017, Hsiaoming Yang'
-author = u'Hsiaoming Yang'
+project = 'Typlog Theme'
+copyright = '2017, Hsiaoming Yang'
+author = 'Hsiaoming Yang'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
-import codecs
 from setuptools import setup
 from sphinx_typlog_theme import __version__
 
-with codecs.open('README.rst', encoding='utf-8') as f:
+with open('README.rst', encoding='utf-8') as f:
     readme = f.read()
 
 setup(
@@ -17,6 +16,8 @@ setup(
     url='https://github.com/typlog/sphinx-typlog-theme',
     packages=['sphinx_typlog_theme'],
     include_package_data=True,
+    python_requires='>=3.8',
+    install_requires=['sphinx>=5'],
     entry_points={
         'sphinx.html_themes': [
             'sphinx_typlog_theme = sphinx_typlog_theme',
@@ -33,12 +34,14 @@ setup(
         'Framework :: Sphinx',
         'Framework :: Sphinx :: Theme',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Documentation',

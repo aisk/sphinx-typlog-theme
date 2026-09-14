@@ -3,6 +3,18 @@ Changelog
 
 Here is the changelog for sphinx typlog theme.
 
+Version 0.8.0
+-------------
+
+**Unreleased**
+
+- Support Sphinx 5 to 9. Sphinx 5 is now the minimum version.
+- Remove the jQuery dependency, jQuery is no longer shipped by Sphinx.
+- Style footnotes, citations, field lists and line numbers rendered by
+  new docutils and Sphinx.
+- Use Google Analytics 4 (``gtag.js``) for ``analytics_id``.
+- Provide default sidebars, ``html_sidebars`` is optional now.
+
 Version 0.7.3
 -------------
 

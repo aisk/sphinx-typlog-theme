@@ -25,6 +25,7 @@ a:hover {
 
 .clearfix:after,
 .section:after,
+section:after,
 .inner:after {
   display: table;
   content: '';
@@ -46,6 +47,19 @@ a > .std-ref {
 table.docutils td.label {
   width: 1px;
   padding-right: 0.6em;
+}
+
+/* docutils >= 0.18 renders citations as div.citation */
+.yue div.citation {
+  display: flex;
+  margin-bottom: 10px;
+}
+.yue div.citation > .label {
+  flex: none;
+  margin-right: 0.6em;
+}
+.yue div.citation > p {
+  margin: 0;
 }
 
 .globaltoc {

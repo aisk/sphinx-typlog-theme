@@ -53,4 +53,14 @@
 .highlighttable .highlight {
   padding-left: 10px;
 }
+
+/* Sphinx >= 4 renders line numbers inline */
+.highlight span.linenos {
+  display: inline-block;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: rgba(0, 0, 0, 0.3);
+  background-color: var(--code-alt-background);
+  user-select: none;
+}
 /* -- highlight end -- */
